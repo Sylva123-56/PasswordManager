@@ -592,7 +592,7 @@
       <div class="brand-hero">
         <div class="hero-emblem"><Icon name="key" size={32} /></div>
         <h1>欢迎回来，<br /><em>你的秘密在这里。</em></h1>
-        <p>解锁后才会在内存中读取条目。离开应用窗口或超过空闲时间，密码库会自动锁定。</p>
+        <p>解锁后才会在内存中读取条目。超过设置的空闲时间，密码库会自动锁定；你也可以随时手动锁定。</p>
       </div>
       <div class="brand-footnote">
         <Icon name="info" size={15} />

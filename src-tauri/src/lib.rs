@@ -20,7 +20,7 @@ use std::{
     thread,
     time::{Duration, Instant},
 };
-use tauri::{Manager, RunEvent, State, WindowEvent};
+use tauri::{Manager, RunEvent, State};
 use thiserror::Error;
 use uuid::Uuid;
 use zeroize::{Zeroize, Zeroizing};
@@ -1394,25 +1394,14 @@ pub fn run() {
         ])
         .build(tauri::generate_context!())
         .expect("error while building Vaultroom application")
-        .run(|app_handle, event| match event {
-            RunEvent::WindowEvent {
-                event: WindowEvent::Focused(false),
-                ..
-            } => {
+        .run(|app_handle, event| {
+            if let RunEvent::ExitRequested { .. } = event {
                 if let Some(state) = app_handle.try_state::<AppState>() {
                     if let Ok(mut core) = state.0.lock() {
                         lock_vault_internal(&mut core);
                     }
                 }
             }
-            RunEvent::ExitRequested { .. } => {
-                if let Some(state) = app_handle.try_state::<AppState>() {
-                    if let Ok(mut core) = state.0.lock() {
-                        lock_vault_internal(&mut core);
-                    }
-                }
-            }
-            _ => {}
         });
 }
 
