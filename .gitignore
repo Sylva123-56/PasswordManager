@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.npm-cache/
+src-tauri/target/
+*.pmvault
+*.pmbackup.*
+密码管理器_MVP_项目设计文档.md

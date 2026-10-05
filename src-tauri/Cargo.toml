@@ -1,0 +1,33 @@
+[package]
+name = "vaultroom"
+version = "0.1.0"
+description = "A small, offline-first local password vault."
+authors = ["Vaultroom"]
+edition = "2021"
+rust-version = "1.77.2"
+
+[lib]
+name = "vaultroom_lib"
+crate-type = ["cdylib", "rlib", "staticlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+argon2 = "0.5"
+chacha20poly1305 = { version = "0.10", features = ["std"] }
+rand = "0.8"
+uuid = { version = "1", features = ["v4", "fast-rng"] }
+zeroize = "1.8"
+base64 = "0.22"
+chrono = { version = "0.4", features = ["clock", "serde"] }
+arboard = "3.6"
+sha2 = "0.10"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = ["Win32_Storage_FileSystem"] }
